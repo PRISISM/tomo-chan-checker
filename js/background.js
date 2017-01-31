@@ -4,7 +4,11 @@
  */
 
 var apiUrl = 'https://api.tumblr.com/v2/blog/lovelivescans/posts/photo/?api_key=iOWuHVlzVyFGjvKGHSB1zro7RRgQbAwsGuW5VJhMwtYACWBg78&limit=1';
-var refreshTime = 30;
+// Set default refresh time in sync storage
+chrome.storage.sync.set({
+	'tomoRefreshTime' : 30
+});
+// var refreshTime = 30;
 
 function getLatestPost() {
 	return $.get(apiUrl, function() {}).then(function(result) {
@@ -12,10 +16,11 @@ function getLatestPost() {
 	});
 }
 
+/* Initially set alarm */
 function scheduleRequest() {
-	console.log('Setting Alarm...');
+	console.log('Setting Alarm to 30 minutes refresh...');
 	chrome.alarms.create('refresh', {
-		periodInMinutes: refreshTime
+		periodInMinutes: 30
 	});
 }
 
@@ -39,7 +44,7 @@ function compareChapters() {
 	console.log('Comparing Chapters...');
 
 	var chapterPromise = getLatestPost();
-	var newChapter;
+	var newChapterNum;
 	var latestChapter;
 
 	/* Check if the new chapter is greater than the one stored in sync/local storage*/
