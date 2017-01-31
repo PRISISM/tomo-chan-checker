@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 
-	"name": "Tomo-chan Checker",
+	"name": "Tomo-chan Checker!",
 	"description": "Get alerted when a new 'Tomo-chan wa Onnanoko!' chapter is released!",
 	"version": "1.0",
 	"icons": {

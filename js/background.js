@@ -4,24 +4,12 @@
  */
 
 var apiUrl = 'https://api.tumblr.com/v2/blog/lovelivescans/posts/photo/?api_key=iOWuHVlzVyFGjvKGHSB1zro7RRgQbAwsGuW5VJhMwtYACWBg78&limit=1';
-var refreshTime = 0.5;
-// var latestChapter = 460; // Placeholder value 
+var refreshTime = 30;
 
 function getLatestPost() {
 	return $.get(apiUrl, function() {}).then(function(result) {
 		return result.response;
 	});
-	// .done(function (data) {
-	// 	var firstItem = data.response.posts[0];
-	// 	var chapterNum = firstItem.tags[0];
-	// 	var latestDate = new Date(firstItem.date);
-
-	// 	return chapterNum;
-	// });
-}
-
-function setLatestChapter(num) {
-	latestChapter = num;
 }
 
 function scheduleRequest() {

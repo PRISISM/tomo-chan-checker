@@ -1,4 +1,9 @@
 $(document).ready(function() {
+	
+	chrome.browserAction.setBadgeText({
+		text: ""
+	});
+	
 	var apiUrl = 'https://api.tumblr.com/v2/blog/lovelivescans/posts/photo/?api_key=iOWuHVlzVyFGjvKGHSB1zro7RRgQbAwsGuW5VJhMwtYACWBg78&limit=1';
 
 	var opt = {
