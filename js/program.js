@@ -7,12 +7,12 @@ $(document).ready(function() {
 	var apiUrl = 'https://api.tumblr.com/v2/blog/lovelivescans/posts/photo/?api_key=iOWuHVlzVyFGjvKGHSB1zro7RRgQbAwsGuW5VJhMwtYACWBg78&limit=1';
 	var redditUrl = 'https://www.reddit.com/r/manga/search.json';
 
-	var opt = {
-		type: "basic",
-		title: "Tomo-chan Checker!",
-		message: "test message",
-		iconUrl: "img/icon.png"
-	};
+	// var opt = {
+	// 	type: "basic",
+	// 	title: "Tomo-chan Checker!",
+	// 	message: "test message",
+	// 	iconUrl: "img/icon.png"
+	// };
 
 	// var notification = chrome.notifications.create(opt);
 
@@ -27,6 +27,7 @@ $(document).ready(function() {
 			document.getElementById('latest-date').innerHTML = latestDate;
 			document.getElementById('latest-num').innerHTML = chapterNum;
 
+			$('#latest-link').removeClass('disabled');
 			$('#latest-link').click(function() {
 				chrome.tabs.create({
 					url: $(this).attr('href')
@@ -41,7 +42,6 @@ $(document).ready(function() {
 				}
 				})
 				.done(function(redditData) {
-					// console.log(redditData);
 					var redditPost = redditData.data.children[0];
 					$('#latest-reddit').attr('href', 'https://reddit.com' + redditPost.data.permalink);
 					$('#latest-reddit').removeClass('disabled');

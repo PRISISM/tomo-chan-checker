@@ -1,6 +1,6 @@
 .checker-wrapper {
 	width: 235px;
-	height: 295px;
+	min-height: 330px;
 	padding-left: 3px;
 	padding-right: 3px;
 }
@@ -59,4 +59,14 @@
 .latest-text {
 	color: #d3d3d3;
 	font-size: 13px;
+}
+
+.date-wrapper {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #d3d3d3;
+	min-height: 80px;
+}
+
+.settings-wrapper {
+	padding-top: 20px;
 }

@@ -4,9 +4,17 @@
  */
 
 var apiUrl = 'https://api.tumblr.com/v2/blog/lovelivescans/posts/photo/?api_key=iOWuHVlzVyFGjvKGHSB1zro7RRgQbAwsGuW5VJhMwtYACWBg78&limit=1';
+// options for notification api
+var opt = {
+	type: "basic",
+	title: "Tomo-chan Checker!",
+	message: "A new chapter is available!",
+	iconUrl: "img/icon.png"
+};
+
 // Set default refresh time in sync storage
 chrome.storage.sync.set({
-	'tomoRefreshTime' : 30
+	'tomoRefreshTime': 30
 });
 // var refreshTime = 30;
 
@@ -62,6 +70,8 @@ function compareChapters() {
 				chrome.browserAction.setBadgeText({
 					text: "new"
 				});
+				var notification = chrome.notifications.create(opt);
+
 			} else {
 				console.log(newChapterNum, latestChapter);
 			}

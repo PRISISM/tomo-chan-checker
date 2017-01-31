@@ -1,71 +1,64 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Tomo-chan Checker!</title>
-	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/style.css">
 
+<head>
+    <title>Tomo-chan Checker!</title>
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-<div class="container-fluid checker-wrapper">
-	<section id="main-screen">
-		<div class="container-fluid">
-			<div class="top-bar">
-				<div class="pull-left">
-					<span class="logo">
+    <div class="container-fluid checker-wrapper">
+        <section id="main-screen">
+            <div class="container-fluid">
+                <div class="top-bar">
+                    <div class="pull-left">
+                        <span class="logo">
 						<img src="img/icon.png" alt="tomochan-checker" class="logo">
 					</span>
-					<span class="top-title">Tomo-chan Checker!</span>
-				</div>
-
-			</div>
-			
-			<div class="container-body">
-				<div class="list-group">
-					<a href="http://read.tomochan.today/" id="latest-link" class="list-group-item">
-					<span class="pull-left list-icon">
+                        <span class="top-title">Tomo-chan Checker!</span>
+                    </div>
+                </div>
+                <div class="container-body">
+                    <div class="alert alert-danger" style="display:none;" role="alert">
+                        <strong id="ajax-err"></strong>
+                    </div>
+                    <div class="list-group">
+                        <a href="http://read.tomochan.today/" id="latest-link" class="list-group-item disabled">
+                            <span class="pull-left list-icon">
 						<i class="fa fa-external-link fa-lg" aria-hidden="true"></i>
-					</span>
-					Latest Chapter
-					<span class="badge badge-default" id="latest-num"></span>
-					<span class="pull-right">></span></a>
-
-					<a href="#" id="latest-reddit" class="list-group-item disabled" >
-					<span class="pull-left list-icon">
+					</span> Latest Chapter
+                            <span class="badge badge-default" id="latest-num"></span>
+                            <span class="pull-right">></span></a>
+                        <a href="#" id="latest-reddit" class="list-group-item disabled">
+                            <span class="pull-left list-icon">
 						<i class="fa fa-reddit fa-lg" aria-hidden="true"></i>
-					</span>
-					Reddit Discussion
-					<span class="pull-right">></span></a>
-					</a>
-				</div>
+					</span> Reddit Discussion
+                            <span class="pull-right">></span></a>
+                        </a>
+                    </div>
 
-				<span class="latest-text">Latest chapter was uploaded on: </span>
-				<span id="latest-date" class="latest-text">N/A</span>
+                    <div class="date-wrapper">
+                    	<span class="latest-text">Latest chapter was uploaded on: </span>
+                    	<span id="latest-date" class="latest-text">N/A</span>
+                    </div>
+					
+					<div class="col-md-4 text-center settings-wrapper">
+				   		<button class="btn btn-default btn-block"><i class="fa fa-cog" aria-hidden="true"></i></button>
+					</div>
+                </div>
 
-			</div>
+            </div>
+        </section>
 
-		</div>
-
-	</section>
-
-<!--     <div class="title-wrapper">
-        <h3>Tomo-chan Checker!</h3>
     </div>
+    <script src="js/bootstrap.min.js"></script>
 
-    <div class="body-wrapper">
-        <div class="alert alert-danger" style="display:none;" role="alert">
-            <strong id="ajax-err"></strong>
-        </div>
-        <p>You can find the latest Tomo-chan chapter <a href="http://read.tomochan.today/" id="latest-link">here!</a></p>
-        <p>This chapter was uploaded on: <span id="latest-date">N/A</span></p>
-    </div> -->
-</div>
+<!--     <script src="js/program.js"></script>
+ -->
 
-	<script src="js/program.js"></script>
-
-	<script src="js/bootstrap.min.js"></script>
- </body>
+</body>
 
 </html>
