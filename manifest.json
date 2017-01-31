@@ -1,0 +1,39 @@
+{
+	"manifest_version": 2,
+
+	"name": "Tomo-chan Checker",
+	"description": "Get alerted when a new 'Tomo-chan wa Onnanoko!' chapter is released!",
+	"version": "1.0",
+	"icons": {
+		"16": "img/icon16.png",
+		"48": "img/icon48.png",
+		"128": "img/icon128.png"
+	},
+	"browser_action": {
+		"default_icon": {
+			"16": "img/icon16.png",
+			"48": "img/icon48.png",
+			"128": "img/icon128.png"
+		},
+		"default_title": "Tomo-chan Checker!",
+		"default_popup": "popup.html"
+	},
+	"permissions": [
+		"http://read.tomochan.today/rss",
+		"notifications",
+		"alarms",
+		"tabs"
+	],
+	"background" :
+	{
+		"scripts": ["js/jquery-3.1.1.min.js", "js/background.js"]
+	},
+	"content_scripts": [{
+		"js": ["js/jquery-3.1.1.min.js", "js/program.js"],
+		"matches": ["http://*/*", "https://*/*"]
+	}],
+	"web_accessible_resources": [
+		"img/icon.png"
+	]
+
+}

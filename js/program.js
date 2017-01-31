@@ -1,0 +1,56 @@
+$(document).ready(function() {
+	var apiUrl = 'https://api.tumblr.com/v2/blog/lovelivescans/posts/photo/?api_key=iOWuHVlzVyFGjvKGHSB1zro7RRgQbAwsGuW5VJhMwtYACWBg78&limit=1';
+
+	var opt = {
+		type: "basic",
+		title: "Tomo-chan Checker!",
+		message: "test message",
+		iconUrl: "icon.png"
+	};
+
+	var notification = chrome.notifications.create(opt);
+
+	$.get(apiUrl, function() {})
+		.done(function(data) {
+			var firstItem = data.response.posts[0];
+			var latestLink = firstItem.post_url;
+			var latestDate = new Date(firstItem.date).toString();
+			var chapterNum = firstItem.tags[0];
+
+			document.getElementById('latest-link').href = latestLink;
+			document.getElementById('latest-date').innerHTML = latestDate;
+
+			$('#latest-link').click(function() {
+				chrome.tabs.create({
+					url: $(this).attr('href')
+				});
+			});
+		})
+		.fail(function(err) {
+			console.log(err);
+			$('#ajax-err').parent().show();
+			document.getElementById('ajax-err').innerHTML = err;
+		});
+
+	// $.get(feedUrl, function(data) {
+	// 	var firstItem = $(data).find("item").first();
+	// 	var latestLink = firstItem.find("link").text();
+	// 	var latestDate = firstItem.find("pubDate").text();
+
+	// 	console.log(latestDate);
+
+	// 	document.getElementById('latest-link').href = latestLink;
+	// 	document.getElementById('latest-date').innerHTML = new Date(latestDate).toString();
+
+	// 	$('#latest-link').click(function() {
+	// 		chrome.tabs.create({url: $(this).attr('href')});
+	// 	});
+
+	// 	// $(data).find("item").each(function() {
+	// 	// 	var el = $(this);
+	// 	// 	console.log(el);
+
+	// 	// });
+	// });
+
+});
