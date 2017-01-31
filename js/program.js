@@ -32,25 +32,4 @@ $(document).ready(function() {
 			document.getElementById('ajax-err').innerHTML = err;
 		});
 
-	// $.get(feedUrl, function(data) {
-	// 	var firstItem = $(data).find("item").first();
-	// 	var latestLink = firstItem.find("link").text();
-	// 	var latestDate = firstItem.find("pubDate").text();
-
-	// 	console.log(latestDate);
-
-	// 	document.getElementById('latest-link').href = latestLink;
-	// 	document.getElementById('latest-date').innerHTML = new Date(latestDate).toString();
-
-	// 	$('#latest-link').click(function() {
-	// 		chrome.tabs.create({url: $(this).attr('href')});
-	// 	});
-
-	// 	// $(data).find("item").each(function() {
-	// 	// 	var el = $(this);
-	// 	// 	console.log(el);
-
-	// 	// });
-	// });
-
 });
