@@ -5,7 +5,7 @@ $(document).ready(function() {
 		type: "basic",
 		title: "Tomo-chan Checker!",
 		message: "test message",
-		iconUrl: "icon.png"
+		iconUrl: "img/icon.png"
 	};
 
 	var notification = chrome.notifications.create(opt);
