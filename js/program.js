@@ -24,6 +24,7 @@ $(document).ready(function() {
 
 			document.getElementById('latest-link').href = latestLink;
 			document.getElementById('latest-date').innerHTML = latestDate;
+			document.getElementById('latest-num').innerHTML = chapterNum;
 
 			$('#latest-link').click(function() {
 				chrome.tabs.create({

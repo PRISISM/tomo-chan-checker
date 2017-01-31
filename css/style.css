@@ -1,3 +1,39 @@
+.checker-wrapper {
+	width: 235px;
+	height: 295px;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
 .title-wrapper h3 {
 	text-align: center;
+}
+
+.logo {
+	float: left;
+	height: 24px;
+	width: 24px;
+	border-radius: 50%;
+	margin-right: 5px;
+}
+
+.top-bar {
+	height: 42px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	font-weight: bold;
+	border-bottom: 1px solid #d3d3d3;
+}
+
+.top-bar .top-title {
+	line-height: 26px;
+}
+
+.container-body {
+	padding-top: 10px;
+	height: 100%;
+}
+
+.list-group-item {
+	border-bottom: 1px solid #d3d3d3;
 }
