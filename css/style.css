@@ -44,6 +44,10 @@
 	padding-right: 10px;
 }
 
+#latest-reddit.list-group-item.disabled {
+	background-color: #fff;
+}
+
 .list-icon {
 	margin-right: 8px;
 }
