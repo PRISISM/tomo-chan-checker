@@ -22,7 +22,8 @@
 		"http://read.tomochan.today/rss",
 		"notifications",
 		"alarms",
-		"tabs"
+		"tabs",
+		"storage"
 	],
 	"background" :
 	{
