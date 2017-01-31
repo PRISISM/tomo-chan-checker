@@ -35,6 +35,7 @@
 	}],
 	"web_accessible_resources": [
 		"img/icon.png"
-	]
+	],
+	"options_page": "options.html"
 
 }
