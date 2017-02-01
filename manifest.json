@@ -30,7 +30,7 @@
 		"scripts": ["js/jquery-3.1.1.min.js", "js/background.js"]
 	},
 	"content_scripts": [{
-		"js": ["js/jquery-3.1.1.min.js", "js/program.js"],
+		"js": ["js/jquery-3.1.1.min.js", "js/program.js", "js/bootstrap.min.js"],
 		"matches": ["http://*/*", "https://*/*"]
 	}],
 	"web_accessible_resources": [

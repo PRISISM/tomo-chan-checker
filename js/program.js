@@ -1,8 +1,5 @@
 $(document).ready(function() {
 
-	// chrome.browserAction.setBadgeText({
-	// 	text: ""
-	// });
 
 	var apiUrl = 'https://api.tumblr.com/v2/blog/lovelivescans/posts/photo/?api_key=iOWuHVlzVyFGjvKGHSB1zro7RRgQbAwsGuW5VJhMwtYACWBg78&limit=1';
 	var redditUrl = 'https://www.reddit.com/r/manga/search.json';
@@ -18,6 +15,7 @@ $(document).ready(function() {
 	// 	$('.nav-tabs > .active').next('li').tab('show');
 	// 	// $('#settings-button').addClass('active');
 	// });
+
 
 	$.get(apiUrl, function() {})
 		.done(function(data) {
