@@ -27,6 +27,7 @@
 
 .top-bar .top-title {
 	line-height: 26px;
+	font-family: 'Lato', sans-serif;
 }
 
 .container-body {
@@ -42,6 +43,8 @@
 	margin-bottom: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
+	font-family: 'Lato', sans-serif;
+	font-weight: bold;
 }
 
 #latest-num {
