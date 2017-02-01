@@ -1,4 +1,4 @@
-.checker-wrapper {
+.tab-content, .checker-wrapper {
 	width: 235px;
 	min-height: 330px;
 	padding-left: 3px;
@@ -48,7 +48,7 @@
 	float: none;
 }
 
-#latest-reddit.list-group-item.disabled {
+#latest-reddit.list-group-item.disabled, #latest-link.list-group-item.disabled {
 	background-color: #fff;
 }
 

@@ -10,54 +10,84 @@
 </head>
 
 <body>
-    <div class="container-fluid checker-wrapper">
-        <section id="main-screen">
-            <div class="container-fluid">
-                <div class="top-bar">
-                    <div class="pull-left">
-                        <span class="logo">
-						<img src="img/icon.png" alt="tomochan-checker" class="logo">
-					</span>
-                        <span class="top-title">Tomo-chan Checker!</span>
-                    </div>
-                </div>
-                <div class="container-body">
-                    <div class="alert alert-danger" style="display:none;" role="alert">
-                        <strong id="ajax-err"></strong>
-                    </div>
-                    <div class="list-group">
-                        <a href="http://read.tomochan.today/" id="latest-link" class="list-group-item disabled">
-                            <span class="pull-left list-icon">
-						<i class="fa fa-external-link fa-lg" aria-hidden="true"></i>
-					</span> Latest Chapter
-                            <span class="badge badge-default" id="latest-num"></span>
-                            <span class="pull-right">></span></a>
-                        <a href="#" id="latest-reddit" class="list-group-item disabled">
-                            <span class="pull-left list-icon">
-						<i class="fa fa-reddit fa-lg" aria-hidden="true"></i>
-					</span> Reddit Discussion
-                            <span class="pull-right">></span></a>
-                        </a>
-                    </div>
+	<ul class="nav nav-tabs hidden" role="tablist">
+		<li class="active" data-toggle="tab">
+			<a href="#main-screen" data-toggle="tab">Main</a>
+		</li>
+		<li data-toggle="tab">
+			<a id="settings-tab" href="#settings-screen" data-toggle="tab">Settings</a>
+		</li>
+	</ul>
 
-                    <div class="date-wrapper">
-                    	<span class="latest-text">Latest chapter was uploaded on: </span>
-                    	<span id="latest-date" class="latest-text">N/A</span>
-                    </div>
-					
-					<div class="col-md-4 text-center settings-wrapper">
-				   		<button class="btn btn-default btn-block"><i class="fa fa-cog" aria-hidden="true"></i></button>
-					</div>
-                </div>
+	<div class="container-fluid checker-wrapper">
+		<div class="tab-content">
+	        <div id="main-screen" class="tab-pane fade in active" role="tabpanel">
+	            <div class="container-fluid">
+	                <div class="top-bar">
+	                    <div class="pull-left">
+	                        <span class="logo">
+							<img src="img/icon.png" alt="tomochan-checker" class="logo">
+						</span>
+	                        <span class="top-title">Tomo-chan Checker!</span>
+	                    </div>
+	                </div>
+	                <div class="container-body">
+	                    <div class="alert alert-danger" style="display:none;" role="alert">
+	                        <strong id="ajax-err"></strong>
+	                    </div>
+	                    <div class="list-group">
+	                        <a href="http://read.tomochan.today/" id="latest-link" class="list-group-item disabled">
+	                            <span class="pull-left list-icon">
+							<i class="fa fa-external-link fa-lg" aria-hidden="true"></i>
+						</span> Latest Chapter
+	                            <span class="badge badge-default" id="latest-num"></span>
+	                            <span class="pull-right">></span></a>
+	                        <a href="#" id="latest-reddit" class="list-group-item disabled">
+	                            <span class="pull-left list-icon">
+							<i class="fa fa-reddit fa-lg" aria-hidden="true"></i>
+						</span> Reddit Discussion
+	                            <span class="pull-right">></span></a>
+	                        </a>
+	                    </div>
 
-            </div>
-        </section>
+	                    <div class="date-wrapper">
+	                    	<span class="latest-text">Latest chapter was uploaded on: </span>
+	                    	<span id="latest-date" class="latest-text">N/A</span>
+	                    </div>
+						
+						<div class="col-md-4 text-center settings-wrapper">
+					   		<button id='settings-button' class="btn btn-default btn-block" data-toggle="tab">
+					   			<i class="fa fa-cog" aria-hidden="true"></i>
+					   		</button>
+						</div>
+	                </div>
 
-    </div>
+	            </div>
+
+	        </div>
+			
+			<div id="settings-screen" class="tab-pane fade" role="tabpanel">
+	            <div class="container-fluid">
+	                <div class="top-bar">
+	                    <div class="pull-left">
+	                        <span class="logo">
+							<img src="img/icon.png" alt="tomochan-checker" class="logo">
+						</span>
+	                        <span class="top-title">Settings</span>
+	                    </div>
+	                </div>
+	                <div class="container-body">
+	                	<h3>Settings</h3>
+	                </div>
+				</div>
+			</div>
+
+	    </div>
+	</div>
     <script src="js/bootstrap.min.js"></script>
 
-<!--     <script src="js/program.js"></script>
- -->
+    <script src="js/program.js"></script>
+
 
 </body>
 

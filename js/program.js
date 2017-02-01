@@ -1,20 +1,18 @@
 $(document).ready(function() {
 
-	chrome.browserAction.setBadgeText({
-		text: ""
-	});
+	// chrome.browserAction.setBadgeText({
+	// 	text: ""
+	// });
 
 	var apiUrl = 'https://api.tumblr.com/v2/blog/lovelivescans/posts/photo/?api_key=iOWuHVlzVyFGjvKGHSB1zro7RRgQbAwsGuW5VJhMwtYACWBg78&limit=1';
 	var redditUrl = 'https://www.reddit.com/r/manga/search.json';
 
-	// var opt = {
-	// 	type: "basic",
-	// 	title: "Tomo-chan Checker!",
-	// 	message: "test message",
-	// 	iconUrl: "img/icon.png"
-	// };
+	$('#settings-button').click(function(e) {
+		e.preventDefault();
+		$('.nav-tabs > .active').next('li').tab('show');
 
-	// var notification = chrome.notifications.create(opt);
+		// $('#settings-button').addClass('active');
+	});
 
 	$.get(apiUrl, function() {})
 		.done(function(data) {
