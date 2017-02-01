@@ -9,10 +9,15 @@ $(document).ready(function() {
 
 	$('#settings-button').click(function(e) {
 		e.preventDefault();
-		$('.nav-tabs > .active').next('li').tab('show');
-
+		$('.nav-tabs #settings-tab').tab('show');
 		// $('#settings-button').addClass('active');
 	});
+
+	// $('#home-button').click(function(e) {
+	// 	e.preventDefault();
+	// 	$('.nav-tabs > .active').next('li').tab('show');
+	// 	// $('#settings-button').addClass('active');
+	// });
 
 	$.get(apiUrl, function() {})
 		.done(function(data) {
