@@ -1,5 +1,5 @@
 .tab-content, .checker-wrapper {
-	width: 235px;
+	width: 232px;
 	min-height: 330px;
 	padding-left: 3px;
 	padding-right: 3px;
@@ -71,6 +71,17 @@
 	padding-top: 20px;
 }
 
-#refresh-slider {
+.main-wrapper {
+	padding-top: 30%;
+}
+
+#refresh-select {
+	padding-right: 18px;
 	width: 190px;
 }
+
+#refresh-button {
+	padding-right: 18px;
+	margin-bottom: 5px;
+}
+

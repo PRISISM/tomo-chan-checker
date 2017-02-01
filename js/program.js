@@ -7,15 +7,19 @@ $(document).ready(function() {
 	$('#settings-button').click(function(e) {
 		e.preventDefault();
 		$('.nav-tabs #settings-tab').tab('show');
-		// $('#settings-button').addClass('active');
 	});
 
-	// $('#home-button').click(function(e) {
-	// 	e.preventDefault();
-	// 	$('.nav-tabs > .active').next('li').tab('show');
-	// 	// $('#settings-button').addClass('active');
-	// });
+	$('#main-button').click(function(e) {
+		e.preventDefault();
+		$('.nav-tabs #main-tab').tab('show');
+	});
 
+	chrome.storage.sync.get('tomoRefreshTime', function(storageObj) {
+		var refreshMins = parseInt(storageObj.tomoRefreshTime);
+		var refreshTime = Math.floor((refreshMins / 60)).toString() + 'h ' + 
+		(refreshMins % 60).toString() + 'm';
+		$('#refresh-time').text(refreshTime);
+	});
 
 	$.get(apiUrl, function() {})
 		.done(function(data) {

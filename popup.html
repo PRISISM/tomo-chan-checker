@@ -78,11 +78,30 @@
 	                    </div>
 	                </div>
 	                <div class="container-body">
-	                	<h3>Settings</h3>
-	                	<select id="refreshSelect">
-	                		
-
+	                	<p>Check for chapters every:</p>
+	                	<select id="refresh-select" class="selectpicker">
+	                		<option value="30">30 minutes</option>
+							<option value="60">1 hour</option>
+							<option value="120">2 hours</option>
+							<option value="360">6 hours</option>
+							<option value="720">12 hours</option>
+							<option value="1440">1 day</option>
 	                	</select>
+	                	<div class="settings-wrapper text-center col-md-4">
+		                	<button id="refresh-button" class="btn btn-default btn-block">
+		                		Update
+		                	</button>
+
+		                	<span class="latest-text">
+		                		Current update rate is: <br> <strong id="refresh-time">N/A</strong>
+		                	</span>
+	                	</div>
+						<div class="col-md-4 text-center main-wrapper">
+					   		<button id='main-button' class="btn btn-default btn-block" data-toggle="tab">
+					   			<i class="fa fa-home" aria-hidden="true"></i>
+					   		</button>
+						</div>
+
 	                </div>
 				</div>
 			</div>
