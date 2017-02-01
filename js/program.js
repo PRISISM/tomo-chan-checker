@@ -4,6 +4,13 @@ $(document).ready(function() {
 	var apiUrl = 'https://api.tumblr.com/v2/blog/lovelivescans/posts/photo/?api_key=iOWuHVlzVyFGjvKGHSB1zro7RRgQbAwsGuW5VJhMwtYACWBg78&limit=1';
 	var redditUrl = 'https://www.reddit.com/r/manga/search.json';
 
+	chrome.storage.sync.get('tomoRefreshTime', function(storageObj) {
+		var refreshMins = parseInt(storageObj.tomoRefreshTime);
+		var refreshTime = Math.floor((refreshMins / 60)).toString() + 'h ' + 
+		(refreshMins % 60).toString() + 'm';
+		$('#refresh-time').text(refreshTime);
+	});
+
 	$('#settings-button').click(function(e) {
 		e.preventDefault();
 		$('.nav-tabs #settings-tab').tab('show');
@@ -14,12 +21,30 @@ $(document).ready(function() {
 		$('.nav-tabs #main-tab').tab('show');
 	});
 
-	chrome.storage.sync.get('tomoRefreshTime', function(storageObj) {
-		var refreshMins = parseInt(storageObj.tomoRefreshTime);
-		var refreshTime = Math.floor((refreshMins / 60)).toString() + 'h ' + 
-		(refreshMins % 60).toString() + 'm';
-		$('#refresh-time').text(refreshTime);
+	$('.selectpicker').selectpicker();
+
+	$('#refresh-button').click(function() {
+		var selectedRate = $('#refresh-select').find("option:selected").val();
+
+		chrome.storage.sync.set({
+			'tomoRefreshTime': parseInt(selectedRate)
+		}, function() {
+			console.log('Refresh time set to: ' + selectedRate);
+
+			chrome.alarms.create('refresh', {
+				periodInMinutes: parseInt(selectedRate)
+			});
+			
+			console.log('Alarm set to: ' + selectedRate);
+			var refreshMins = parseInt(selectedRate);
+			var refreshTime = Math.floor((refreshMins / 60)).toString() + 'h ' +
+				(refreshMins % 60).toString() + 'm';
+			$('#refresh-time').text(refreshTime);
+
+		});
+
 	});
+
 
 	$.get(apiUrl, function() {})
 		.done(function(data) {
