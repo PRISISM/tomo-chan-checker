@@ -16,7 +16,6 @@ var opt = {
 chrome.storage.sync.set({
 	'tomoRefreshTime': 30
 });
-// var refreshTime = 30;
 
 function getLatestPost() {
 	return $.get(apiUrl, function() {}).then(function(result) {
