@@ -4,11 +4,12 @@
  */
 
 var apiUrl = 'https://api.tumblr.com/v2/blog/lovelivescans/posts/photo/?api_key=iOWuHVlzVyFGjvKGHSB1zro7RRgQbAwsGuW5VJhMwtYACWBg78&limit=1';
+
 // options for notification api
 var opt = {
 	type: "basic",
 	title: "Tomo-chan Checker!",
-	message: "A new chapter is available!",
+	message: "A new chapter is available! Click on this notification or the extension to check it out!",
 	iconUrl: "img/icon.png"
 };
 
@@ -86,6 +87,34 @@ function onAlarm() {
 	compareChapters();
 
 }
+
+/*
+Sets a listener for the notification
+Updates the latest chapter in storage sync and opens the chapter
+ */
+chrome.notifications.onClicked.addListener(function() {
+	var notificationPromise = getLatestPost();
+
+	notificationPromise.then(function(data) {
+		var firstItem = data.posts[0];
+		var latestLink = firstItem.post_url;
+		var notifChapterNum = firstItem.tags[0];
+
+		chrome.tabs.create({url: latestLink}, function() {
+			chrome.browserAction.setBadgeText({
+				'text': ''
+			});
+
+			chrome.storage.sync.set({
+				'tomoLatestChapter': notifChapterNum
+			}, function() {
+				console.log('Latest chapter set to: ', notifChapterNum);
+			});
+
+		});
+
+	});
+});
 
 /* 
 Sets the latest chapter and alarm whenever the extension is installed, or Chrome is updated.

@@ -1,13 +1,17 @@
 $(document).ready(function() {
 
-
 	var apiUrl = 'https://api.tumblr.com/v2/blog/lovelivescans/posts/photo/?api_key=iOWuHVlzVyFGjvKGHSB1zro7RRgQbAwsGuW5VJhMwtYACWBg78&limit=1';
 	var redditUrl = 'https://www.reddit.com/r/manga/search.json';
 
+	/*Update badge*/
+	chrome.browserAction.setBadgeText({
+		'text': ''
+	});
+
 	chrome.storage.sync.get('tomoRefreshTime', function(storageObj) {
 		var refreshMins = parseInt(storageObj.tomoRefreshTime);
-		var refreshTime = Math.floor((refreshMins / 60)).toString() + 'h ' + 
-		(refreshMins % 60).toString() + 'm';
+		var refreshTime = Math.floor((refreshMins / 60)).toString() + 'h ' +
+			(refreshMins % 60).toString() + 'm';
 		$('#refresh-time').text(refreshTime);
 	});
 
@@ -34,7 +38,7 @@ $(document).ready(function() {
 			chrome.alarms.create('refresh', {
 				periodInMinutes: parseInt(selectedRate)
 			});
-			
+
 			console.log('Alarm set to: ' + selectedRate);
 			var refreshMins = parseInt(selectedRate);
 			var refreshTime = Math.floor((refreshMins / 60)).toString() + 'h ' +
@@ -57,6 +61,13 @@ $(document).ready(function() {
 			document.getElementById('latest-date').innerHTML = latestDate;
 			document.getElementById('latest-num').innerHTML = chapterNum;
 
+			/* Update sync storage */
+			chrome.storage.sync.set({
+				'tomoLatestChapter': chapterNum
+			}, function() {
+				console.log('Latest chapter set to: ', chapterNum);
+			});
+
 			$('#latest-link').removeClass('disabled');
 			$('#latest-link').click(function() {
 				chrome.tabs.create({
@@ -65,11 +76,11 @@ $(document).ready(function() {
 			});
 
 			$.ajax({
-				type: 'GET',
-				url: redditUrl,
-				data: {
-					q: '[DISC] Tomo-chan wa Onnanoko! ' + chapterNum
-				}
+					type: 'GET',
+					url: redditUrl,
+					data: {
+						q: '[DISC] Tomo-chan wa Onnanoko! ' + chapterNum
+					}
 				})
 				.done(function(redditData) {
 					var redditPost = redditData.data.children[0];
