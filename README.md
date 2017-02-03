@@ -1,1 +1,2 @@
-# Tomo-chan Checker!
+# Tomo-chan! Checker
+Tomo-chan! Checker is a Chrome extension that alerts users when a new chapter is released on the source's page. This is achieved through the `notifications` API to create desktop notifications with event handlers. Additionally, users can view the popup to visit the Reddit discussion page for the current chapter, or view the latest chapter's source. Users can also modify the rate at which their browser will check for chapters. 
