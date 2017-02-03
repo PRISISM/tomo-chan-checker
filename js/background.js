@@ -3,7 +3,7 @@
 	@toashel
  */
 
-var apiUrl = 'https://api.tumblr.com/v2/blog/lovelivescans/posts/photo/?api_key=iOWuHVlzVyFGjvKGHSB1zro7RRgQbAwsGuW5VJhMwtYACWBg78&limit=1';
+var apiUrl = 'https://api.tumblr.com/v2/blog/lovelivescans/posts/photo/?api_key=iOWuHVlzVyFGjvKGHSB1zro7RRgQbAwsGuW5VJhMwtYACWBg78&limit=3';
 
 // options for notification api
 var opt = {
@@ -19,8 +19,14 @@ chrome.storage.sync.set({
 });
 
 function getLatestPost() {
+	// Returns a promise that returns a post that has a valid tag
 	return $.get(apiUrl, function() {}).then(function(result) {
-		return result.response;
+		for (var i = 0; i < result.response.posts.length; i++) {
+			var tag = result.response.posts[i].tags[0];
+			if (tag == parseInt(tag))
+				return result.response.posts[i];
+		}
+
 	});
 }
 
@@ -37,13 +43,12 @@ function setStorage() {
 	var chapterPromise = getLatestPost();
 
 	chapterPromise.then(function(data) {
-		var firstItem = data.posts[0];
-		var chapterNum = firstItem.tags[0];
+		var chapterNum = data.tags[0];
 
 		chrome.storage.sync.set({
 			'tomoLatestChapter': chapterNum
 		}, function() {
-			console.log('Latest chapter set to: ', chapterNum);
+			console.log('Latest chapter set to:', chapterNum);
 		});
 	});
 }
@@ -58,8 +63,7 @@ function compareChapters() {
 	/* Check if the new chapter is greater than the one stored in sync/local storage*/
 	chapterPromise.then(function(data) {
 		console.log(data);
-		var firstItem = data.posts[0];
-		newChapterNum = parseInt(firstItem.tags[0]);
+		var newChapterNum = parseInt(data.tags[0]);
 
 		chrome.storage.sync.get('tomoLatestChapter', function(storageObj) {
 			latestChapter = parseInt(storageObj.tomoLatestChapter);
