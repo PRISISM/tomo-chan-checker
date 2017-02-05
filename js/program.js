@@ -1,19 +1,8 @@
 $(document).ready(function() {
 
-	var apiUrl = 'https://api.tumblr.com/v2/blog/lovelivescans/posts/photo/?api_key=iOWuHVlzVyFGjvKGHSB1zro7RRgQbAwsGuW5VJhMwtYACWBg78&limit=3';
+	// var apiUrl = 'https://api.tumblr.com/v2/blog/lovelivescans/posts/photo/?api_key=iOWuHVlzVyFGjvKGHSB1zro7RRgQbAwsGuW5VJhMwtYACWBg78&limit=3';
 	var redditUrl = 'https://www.reddit.com/r/manga/search.json';
-
-	function getLatestPost() {
-		// Returns a promise that returns a post that has a valid tag
-		return $.get(apiUrl, function() {}).then(function(result) {
-			for (var i = 0; i < result.response.posts.length; i++) {
-				var tag = result.response.posts[i].tags[0];
-				if (tag == parseInt(tag))
-					return result.response.posts[i];
-			}
-
-		});
-	}
+	var redditParams = '&sort=new&restrict_sr=true&type=link';
 
 	/*Update badge*/
 	chrome.browserAction.setBadgeText({
@@ -61,24 +50,38 @@ $(document).ready(function() {
 
 	});
 
-	var chapterPromise = getLatestPost();
-	chapterPromise.then(function(data) {
-
-		var latestLink = data.post_url;
-		var latestDate = new Date(data.date).toString();
-		var chapterNum = data.tags[0];
+	$.ajax({
+		type:'GET',
+		url: redditUrl,
+		data: {
+			q: '[DISC] Tomo-chan wa Onnanoko!',
+			sort: 'new',
+			restrict_sr : 'true',
+			type : 'link'
+		}
+	}).done(function(redditData) {
+		var redditPost = redditData.data.children[0].data; //Get first child - may not be correct sometimes.
+	
+		var latestLink = redditPost.url;
+		var redditPermalink = redditPost.permalink;
+		var latestChapter = redditPost.title.match(/\d+/g)[0];
+		
+		var d = new Date(0);
+		d.setUTCSeconds(redditPost.created_utc);
+		var latestDate = d.toString();
 
 		document.getElementById('latest-link').href = latestLink;
 		document.getElementById('latest-date').innerHTML = latestDate;
-		document.getElementById('latest-num').innerHTML = chapterNum;
+		document.getElementById('latest-num').innerHTML = latestChapter;
 
 		/* Update sync storage */
 		chrome.storage.sync.set({
-			'tomoLatestChapter': chapterNum
+			'tomoLatestChapter': latestChapter
 		}, function() {
-			console.log('Latest chapter set to: ', chapterNum);
+			console.log('Latest chapter set to: ', latestChapter);
 		});
 
+		/* Update latest-link */
 		$('#latest-link').removeClass('disabled');
 		$('#latest-link').click(function() {
 			chrome.tabs.create({
@@ -86,31 +89,19 @@ $(document).ready(function() {
 			});
 		});
 
-		$.ajax({
-				type: 'GET',
-				url: redditUrl,
-				data: {
-					q: '[DISC] Tomo-chan wa Onnanoko! ' + chapterNum
-				}
-			})
-			.done(function(redditData) {
-				var redditPost = redditData.data.children[0];
-				$('#latest-reddit').attr('href', 'https://reddit.com' + redditPost.data.permalink);
-				$('#latest-reddit').removeClass('disabled');
-
-				$('#latest-reddit').click(function() {
-					chrome.tabs.create({
-						url: $(this).attr('href')
-					});
-				});
-
+		$('#latest-reddit').attr('href', 'https://reddit.com' + redditPermalink);
+		$('#latest-reddit').removeClass('disabled');
+		$('#latest-reddit').click(function() {
+			chrome.tabs.create({
+				url: $(this).attr('href')
 			});
+		});
+
 	})
 	.fail(function(err) {
 		console.log(err);
 		$('#ajax-err').parent().show();
 		document.getElementById('ajax-err').innerHTML = "Sorry, there was an error: " + err.responseJSON.meta.msg;
 	});
-
 
 });
