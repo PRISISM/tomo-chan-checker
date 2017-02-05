@@ -105,8 +105,10 @@ $(document).ready(function() {
 	})
 	.fail(function(err) {
 		console.log(err);
+		$('#loading-icon').hide();
 		$('#ajax-err').parent().show();
-		document.getElementById('ajax-err').innerHTML = "Sorry, there was an error: " + err.responseJSON.meta.msg;
+		document.getElementById('ajax-err').innerHTML = "Sorry, there was an error with the Reddit servers: " + 
+		err.responseJSON.error + ' ' + err.responseJSON.message;
 	});
 
 });

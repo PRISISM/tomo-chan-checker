@@ -24,7 +24,12 @@
 	<div class="container-fluid checker-wrapper">
 		<div class="tab-content">
 			
-			<div id="loading-wrapper"></div>
+			<div id="loading-wrapper">
+				<div class="alert alert-danger" style="display:none" role="alert">
+					<strong id="ajax-err"></strong>
+				</div>
+
+			</div>
 			<div id="loading-icon"></div>
 
 	        <div id="main-screen" class="tab-pane fade in active" role="tabpanel">
@@ -38,9 +43,9 @@
 	                    </div>
 	                </div>
 	                <div class="container-body">
-	                    <div class="alert alert-danger" style="display:none; margin-bottom:0;" role="alert">
+<!-- 	                    <div class="alert alert-danger" style="display:none; margin-bottom:0;" role="alert">
 	                        <strong id="ajax-err"></strong>
-	                    </div>
+	                    </div> -->
 	                    <div class="list-group">
 	                        <a href="http://read.tomochan.today/" id="latest-link" class="list-group-item disabled">
 	                            <span class="pull-left list-icon">
