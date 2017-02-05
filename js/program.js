@@ -50,6 +50,9 @@ $(document).ready(function() {
 
 	});
 
+	/*Start loading animation*/
+	$('#loading-icon, #loading-wrapper').show();
+
 	$.ajax({
 		type:'GET',
 		url: redditUrl,
@@ -60,6 +63,8 @@ $(document).ready(function() {
 			type : 'link'
 		}
 	}).done(function(redditData) {
+		$('#loading-icon, #loading-wrapper').hide();
+
 		var redditPost = redditData.data.children[0].data; //Get first child - may not be correct sometimes.
 	
 		var latestLink = redditPost.url;
