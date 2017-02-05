@@ -105,9 +105,8 @@ chrome.notifications.onClicked.addListener(function() {
 	var notificationPromise = getLatestPost();
 
 	notificationPromise.then(function(data) {
-		var firstItem = data.posts[0];
-		var latestLink = firstItem.post_url;
-		var notifChapterNum = firstItem.tags[0];
+		var latestLink = data.url;
+		var notifChapterNum = getNumFromString(data.title);
 
 		chrome.tabs.create({url: latestLink}, function() {
 			chrome.browserAction.setBadgeText({
