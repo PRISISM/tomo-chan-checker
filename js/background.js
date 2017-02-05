@@ -3,7 +3,7 @@
 	@toashel
  */
 
-var apiUrl = 'https://api.tumblr.com/v2/blog/lovelivescans/posts/photo/?api_key=iOWuHVlzVyFGjvKGHSB1zro7RRgQbAwsGuW5VJhMwtYACWBg78&limit=3';
+var redditUrl = 'https://www.reddit.com/r/manga/search.json';
 
 // options for notification api
 var opt = {
@@ -12,11 +12,6 @@ var opt = {
 	message: "A new chapter is available! Click on this notification or the extension to check it out!",
 	iconUrl: "img/icon.png"
 };
-
-// Set default refresh time in sync storage
-chrome.storage.sync.set({
-	'tomoRefreshTime': 30
-});
 
 function getLatestPost() {
 	// Returns a promise that returns a post that has a valid tag
@@ -126,6 +121,9 @@ Sets the latest chapter and alarm whenever the extension is installed, or Chrome
 chrome.runtime.onInstalled.addListener(setStorage);
 
 chrome.runtime.onInstalled.addListener(function() {
+	chrome.storage.sync.set({
+		'tomoRefreshTime': 30
+	});
 	scheduleRequest();
 });
 
