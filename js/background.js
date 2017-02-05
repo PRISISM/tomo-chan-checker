@@ -13,15 +13,24 @@ var opt = {
 	iconUrl: "img/icon.png"
 };
 
-function getLatestPost() {
-	// Returns a promise that returns a post that has a valid tag
-	return $.get(apiUrl, function() {}).then(function(result) {
-		for (var i = 0; i < result.response.posts.length; i++) {
-			var tag = result.response.posts[i].tags[0];
-			if (tag == parseInt(tag))
-				return result.response.posts[i];
-		}
+function getNumFromString(string) {
+	var pattern = /\d+/g;
+	return string.match(pattern)[0];
+}
 
+function getLatestPost() {
+	// Returns a promise that returns the data of the first post found.
+	return $.ajax({
+		type:'GET',
+		url: redditUrl,
+		data: {
+			q: '[DISC] Tomo-chan wa Onnanoko!',
+			sort: 'new',
+			restrict_sr : 'true',
+			type : 'link'
+		}
+	}).then(function(data) {
+		return data.data.children[0].data;
 	});
 }
 
@@ -33,12 +42,13 @@ function scheduleRequest() {
 	});
 }
 
+/* Set the chapter number in sync storage */
 function setStorage() {
 	console.log('Setting Storage...');
 	var chapterPromise = getLatestPost();
 
 	chapterPromise.then(function(data) {
-		var chapterNum = data.tags[0];
+		var chapterNum = getNumFromString(data.title);
 
 		chrome.storage.sync.set({
 			'tomoLatestChapter': chapterNum
@@ -58,7 +68,7 @@ function compareChapters() {
 	/* Check if the new chapter is greater than the one stored in sync/local storage*/
 	chapterPromise.then(function(data) {
 		console.log(data);
-		var newChapterNum = parseInt(data.tags[0]);
+		var newChapterNum = parseInt(getNumFromString(data.title));
 
 		chrome.storage.sync.get('tomoLatestChapter', function(storageObj) {
 			latestChapter = parseInt(storageObj.tomoLatestChapter);
