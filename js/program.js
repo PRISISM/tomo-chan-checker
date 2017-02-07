@@ -1,4 +1,4 @@
-$(document).ready(function() {
+document.addEventListener('DOMContentLoaded', function() {
 
 	// var apiUrl = 'https://api.tumblr.com/v2/blog/lovelivescans/posts/photo/?api_key=iOWuHVlzVyFGjvKGHSB1zro7RRgQbAwsGuW5VJhMwtYACWBg78&limit=3';
 	var redditUrl = 'https://www.reddit.com/r/manga/search.json';
@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 	/*Update badge*/
 	chrome.browserAction.setBadgeText({
-		'text': ''
+		text: ''
 	});
 
 	chrome.storage.sync.get('tomoRefreshTime', function(storageObj) {
@@ -26,7 +26,7 @@ $(document).ready(function() {
 		$('.nav-tabs #main-tab').tab('show');
 	});
 
-	$('.selectpicker').selectpicker();
+	$('#select-picker').selectpicker();
 
 	$('#refresh-button').click(function() {
 		var selectedRate = $('#refresh-select').find("option:selected").val();

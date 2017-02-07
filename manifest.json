@@ -19,7 +19,6 @@
 		"default_popup": "popup.html"
 	},
 	"permissions": [
-		"http://read.tomochan.today/rss",
 		"notifications",
 		"alarms",
 		"tabs",
@@ -29,10 +28,6 @@
 	{
 		"scripts": ["js/jquery-3.1.1.min.js", "js/background.js"]
 	},
-	"content_scripts": [{
-		"js": ["js/jquery-3.1.1.min.js", "js/program.js", "js/bootstrap.min.js"],
-		"matches": ["http://*/*", "https://*/*"]
-	}],
 	"web_accessible_resources": [
 		"img/icon.png"
 	]
